@@ -71,114 +71,126 @@ MODULE Module1
             z_offset:=0;
 
         CASE 5:
-            !90 derece case 
+            !90 derece case  
 
             x_offset:=455.5;
             y_offset:=-212;
             z_offset:=0;
+            
+        CASE 6: 
+            !90 derece case orta 1. kat case 6 olmalı
 
-        CASE 6:
-            !0 derece case 
+            x_offset:=226;
+            y_offset:=117;
+            z_offset:=0;    
+            
+        CASE 7:
+            !0 derece case 1.kat
 
             x_offset:=211;
             y_offset:=923;
             z_offset:=0;
             
 
-        CASE 7:
+            
+
+        CASE 8:
             !0 derece case 2. kat
 
             x_offset:=200;
             y_offset:=7;
             z_offset:=204;
             
-        CASE 8:
+        CASE 9:
             !90 derece case 2. kat
 
             x_offset:=0;
             y_offset:=-217;
             z_offset:=204;
             
-        CASE 9:
+        CASE 10:
             !90 derece case 2. kat
 
             x_offset:=455;
             y_offset:=450;
             z_offset:=204;
             
-        CASE 10:
+        CASE 11:
             !90 derece case 2. kat
 
             x_offset:=455;
             y_offset:=0;
             z_offset:=204;
             
-        CASE 11:
+        CASE 12:
             !90 derece case 2. kat
 
             x_offset:=0;
             y_offset:=250;
             z_offset:=204;
+ 
+        CASE 13:
+            !90 derece case orta 2. kat  case 13 olmalı
+
+
+            x_offset:=226;
+            y_offset:=117;
+            z_offset:=204;
             
-         CASE 12:
+         CASE 14:
             !0 derece case 2. kat
 
             x_offset:=0;
             y_offset:=923;
             z_offset:=204;            
         
-            CASE 13: 
-            !90 derece case orta 1. kat
+  
+            
+
+            
+            CASE 21:
+            !90 derece case orta 3. kat
 
             x_offset:=226;
             y_offset:=117;
-            z_offset:=0;    
+            z_offset:=408;
             
-            CASE 14:
-            !90 derece case orta 2. kat
-
-            x_offset:=226;
-            y_offset:=117;
-            z_offset:=204;
-            
-            
-            
-            CASE 1:
+            CASE 15:
                 ! 0 derece 3.kat
 
                 x_offset:=0;
                 y_offset:=0;
                 z_offset:=408;
                 
-            CASE 2:
+            CASE 16:
                 ! 90 derece 3. kat
 
                 x_offset:=0;
                 y_offset:=0;
                 z_offset:=408;
 
-            CASE 3:
+            CASE 17:
                 !90 derece case sol1 3.sıra 2. kutu
 
                 x_offset:=0;
                 y_offset:=455.5;
                 z_offset:=408;
 
-            CASE 4:
-                !90 derece case 
+            CASE 18:
+                !90 derece case 3. sıra 3. kutu
 
                 x_offset:=455.5;
                 y_offset:=250;
                 z_offset:=408;
 
-            CASE 5:
+            CASE 19:
                 !90 derece case 
 
                 x_offset:=455.5;
                 y_offset:=-212;
                 z_offset:=408;
 
-            CASE 6:
+            CASE 20:
                 !0 derece case 3.sıra 1. kutu
 
                 x_offset:=211;
@@ -200,7 +212,7 @@ MODULE Module1
 
             TEST ofsset_degerleri_gri_kutu
 
-            CASE 1,6,7,12:
+            CASE 1,7,8,14,15,20:
                 WaitDI urun_bekle,1;
                 urun_alma;
                 MoveJ Offs(gri_birakma_0_derecei,x_offset,y_offset,z_offset+50),v5000,fine,tVacuum\WObj:=wobj0;
@@ -210,7 +222,7 @@ MODULE Module1
                 IF ofsset_degerleri_gri_kutu=1 THEN ! burada yanlis yazmisiz
                   kat_sayilari_gri:=2;
                ENDIF
-               IF ofsset_degerleri_gri_kutu=7  THEN
+               IF ofsset_degerleri_gri_kutu=8  THEN
                    kat_sayilari_gri:=2;
                ENDIF
                ofsset_degerleri_gri_kutu:=ofsset_degerleri_gri_kutu+1;
@@ -222,7 +234,7 @@ MODULE Module1
 
             TEST ofsset_degerleri_gri_kutu
 
-            CASE 2,3,4,5,8,9,10,11:
+            CASE 2,3,4,5,6,9,10,11,12,13,16,17,18,19,21:
             
                 WaitDI urun_bekle,1;
                 urun_alma;
@@ -231,10 +243,10 @@ MODULE Module1
                 SetDO tutucu_kontrol,0;
                 MoveL Offs(gri_birakma_90_derece,x_offset,y_offset,z_offset+50),v5000,fine,tVacuum\WObj:=wobj0;
                 ofsset_degerleri_gri_kutu:=ofsset_degerleri_gri_kutu+1;
-                IF ofsset_degerleri_gri_kutu=6 THEN
+                IF ofsset_degerleri_gri_kutu=7 THEN
                     kat_sayilari_gri:=1;
                 ENDIF
-                IF ofsset_degerleri_gri_kutu=12 THEN
+                IF ofsset_degerleri_gri_kutu=14 THEN
                     kat_sayilari_gri:=1;
                 ENDIF
 
@@ -243,7 +255,10 @@ MODULE Module1
             ENDTEST
 
         ENDTEST
-
+        
+        
+        
+        
     ENDPROC
 
     PROC turuncu_kat_sayilari()
