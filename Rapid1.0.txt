@@ -1,0 +1,357 @@
+MODULE Module1
+    CONST robtarget home:=[[1735.118467892,0,1597.499926603],[0.49999989,0,0.866025467,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST robtarget gri_alma_noktasi:=[[-548.330069329,1697.217541942,711.980889775],[0.001905119,-0.999719252,-0.023511353,0.002236764],[1,0,-1,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST robtarget gri_birakma_0_derecei:=[[565.676041177,1145.683324302,777.519980719],[0.001905337,-0.999719264,-0.023510885,0.002236439],[0,0,-2,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST robtarget gri_birakma_90_derece:=[[441.815715003,1484.167587578,777.517928735],[0.00024526,0.687472036,0.726204908,-0.002927549],[0,0,-3,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST robtarget turuncu_0_derece:=[[393.059050523,-1259.074116772,785.019533059],[0.000136013,0.713775418,0.700368492,-0.002934207],[-1,-1,-4,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    CONST robtarget turuncu_90_derece:=[[493.179904014,-2037.158882845,746.880135494],[0.001973481,-0.999968525,0.007370317,0.002175366],[-1,-1,-3,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+
+    VAR num ofsset_degerleri_gri_kutu:=1;
+    VAR num ofsset_degerleri_turuncu_kutu;
+    VAR num kat_sayilari_gri:=1;
+    VAR num kat_sayilari_turuncu;
+    VAR num sayici_turuncu;
+    VAR num sayici_gri;
+
+    PERS num x_offset;
+    PERS num y_offset;
+    PERS num z_offset;
+
+    PROC main()
+
+        urun_sirasi_belirle;
+
+
+    ENDPROC
+
+
+    PROC urun_sirasi_belirle()
+        ! ürün hangi banda gelirse robot oraya gider.
+
+        IF urun_bekle=1 THEN
+            gri_kat_sayilari;
+        ENDIF
+
+        IF urun_bekleme=1 THEN
+            turuncu_kat_sayilari;
+        ENDIF
+
+    ENDPROC
+
+    PROC offsetler_gri_kutu()
+
+        TEST ofsset_degerleri_gri_kutu
+
+        CASE 1:
+            ! 0 derece 1.kat
+
+            x_offset:=0;
+            y_offset:=0;
+            z_offset:=0;
+            
+        CASE 2:
+            ! 90 derece 1. kat
+
+            x_offset:=0;
+            y_offset:=0;
+            z_offset:=0.1;
+
+        CASE 3:
+            !90 derece case sol1
+
+            x_offset:=0;
+            y_offset:=455.5;
+            z_offset:=0;
+
+        CASE 4:
+            !90 derece case 
+
+            x_offset:=455.5;
+            y_offset:=250;
+            z_offset:=0;
+
+        CASE 5:
+            !90 derece case 
+
+            x_offset:=455.5;
+            y_offset:=-212;
+            z_offset:=0;
+
+        CASE 6:
+            !0 derece case 
+
+            x_offset:=211;
+            y_offset:=923;
+            z_offset:=0;
+            
+
+        CASE 7:
+            !0 derece case 2. kat
+
+            x_offset:=200;
+            y_offset:=7;
+            z_offset:=204;
+            
+        CASE 8:
+            !90 derece case 2. kat
+
+            x_offset:=0;
+            y_offset:=-217;
+            z_offset:=204;
+            
+        CASE 9:
+            !90 derece case 2. kat
+
+            x_offset:=455;
+            y_offset:=450;
+            z_offset:=204;
+            
+        CASE 10:
+            !90 derece case 2. kat
+
+            x_offset:=455;
+            y_offset:=0;
+            z_offset:=204;
+            
+        CASE 11:
+            !90 derece case 2. kat
+
+            x_offset:=0;
+            y_offset:=250;
+            z_offset:=204;
+            
+         CASE 12:
+            !0 derece case 2. kat
+
+            x_offset:=0;
+            y_offset:=923;
+            z_offset:=204;            
+        
+            CASE 13: 
+            !90 derece case orta 1. kat
+
+            x_offset:=226;
+            y_offset:=117;
+            z_offset:=0;    
+            
+            CASE 14:
+            !90 derece case orta 2. kat
+
+            x_offset:=226;
+            y_offset:=117;
+            z_offset:=204;
+            
+            
+            
+            CASE 1:
+                ! 0 derece 3.kat
+
+                x_offset:=0;
+                y_offset:=0;
+                z_offset:=408;
+                
+            CASE 2:
+                ! 90 derece 3. kat
+
+                x_offset:=0;
+                y_offset:=0;
+                z_offset:=408;
+
+            CASE 3:
+                !90 derece case sol1 3.sıra 2. kutu
+
+                x_offset:=0;
+                y_offset:=455.5;
+                z_offset:=408;
+
+            CASE 4:
+                !90 derece case 
+
+                x_offset:=455.5;
+                y_offset:=250;
+                z_offset:=408;
+
+            CASE 5:
+                !90 derece case 
+
+                x_offset:=455.5;
+                y_offset:=-212;
+                z_offset:=408;
+
+            CASE 6:
+                !0 derece case 3.sıra 1. kutu
+
+                x_offset:=211;
+                y_offset:=923;
+                z_offset:=408;
+                
+        ENDTEST
+
+    ENDPROC
+
+
+    PROC gri_kat_sayilari()
+   
+        offsetler_gri_kutu;
+        
+    TEST kat_sayilari_gri
+        
+        CASE 1:
+
+            TEST ofsset_degerleri_gri_kutu
+
+            CASE 1,6,7,12:
+                WaitDI urun_bekle,1;
+                urun_alma;
+                MoveJ Offs(gri_birakma_0_derecei,x_offset,y_offset,z_offset+50),v5000,fine,tVacuum\WObj:=wobj0;
+                MoveL Offs(gri_birakma_0_derecei,x_offset,y_offset,z_offset),v5000,fine,tVacuum\WObj:=wobj0;
+                SetDO tutucu_kontrol,0;
+                MoveL Offs(gri_birakma_0_derecei,x_offset,y_offset,z_offset+50),v5000,fine,tVacuum\WObj:=wobj0;
+                IF ofsset_degerleri_gri_kutu=1 THEN ! burada yanlis yazmisiz
+                  kat_sayilari_gri:=2;
+               ENDIF
+               IF ofsset_degerleri_gri_kutu=7  THEN
+                   kat_sayilari_gri:=2;
+               ENDIF
+               ofsset_degerleri_gri_kutu:=ofsset_degerleri_gri_kutu+1;
+               urun_sirasi_belirle;
+            ENDTEST
+
+
+        CASE 2:
+
+            TEST ofsset_degerleri_gri_kutu
+
+            CASE 2,3,4,5,8,9,10,11:
+            
+                WaitDI urun_bekle,1;
+                urun_alma;
+                MoveJ Offs(gri_birakma_90_derece,x_offset,y_offset,z_offset+50),v5000,fine,tVacuum\WObj:=wobj0;
+                MoveL Offs(gri_birakma_90_derece,x_offset,y_offset,z_offset),v5000,fine,tVacuum\WObj:=wobj0;
+                SetDO tutucu_kontrol,0;
+                MoveL Offs(gri_birakma_90_derece,x_offset,y_offset,z_offset+50),v5000,fine,tVacuum\WObj:=wobj0;
+                ofsset_degerleri_gri_kutu:=ofsset_degerleri_gri_kutu+1;
+                IF ofsset_degerleri_gri_kutu=6 THEN
+                    kat_sayilari_gri:=1;
+                ENDIF
+                IF ofsset_degerleri_gri_kutu=12 THEN
+                    kat_sayilari_gri:=1;
+                ENDIF
+
+                urun_sirasi_belirle;
+
+            ENDTEST
+
+        ENDTEST
+
+    ENDPROC
+
+    PROC turuncu_kat_sayilari()
+
+        TEST kat_sayilari_turuncu
+        CASE 1:
+        urun_sirasi_belirle;
+        CASE 2:
+        urun_sirasi_belirle;
+        ENDTEST
+    ENDPROC
+    
+ PROC offsetler_turuncu_kutu()
+
+
+        TEST ofsset_degerleri_turuncu_kutu
+
+        CASE 1:
+            ! 0 derece için
+
+            x_offset:=0;
+            y_offset:=0;
+            z_offset:=0;
+
+
+        CASE 2:
+            ! 0 derece için
+
+            x_offset:=0;
+            y_offset:=-427.5;
+            z_offset:=0;
+
+
+        CASE 3:
+            ! 0 derece için
+
+            x_offset:=431;
+            y_offset:=427.5;
+            z_offset:=0;
+
+        CASE 4:
+            ! 0 derece için
+
+            x_offset:=431;
+            y_offset:=0;
+            z_offset:=0;
+
+        CASE 5:
+            ! 90 derece için teach target 
+
+            x_offset:=0;
+            y_offset:=0;
+            z_offset:=0.1;
+
+
+        CASE 6:
+            ! 90 derece için 
+
+            x_offset:=421;
+            y_offset:=0;
+            z_offset:=0.1;
+
+        CASE 7:
+            ! 90 derece için
+
+            x_offset:=421;
+            y_offset:=0;
+            z_offset:=0.1;
+
+        CASE 8:
+            ! 90 derece için sol üst köse
+
+            x_offset:=420;
+            y_offset:=881;
+            z_offset:=203;
+
+        CASE 9:
+            ! 90 derece için  
+
+            x_offset:=0;
+            y_offset:=881;
+            z_offset:=203;
+        
+        ENDTEST
+
+    ENDPROC
+
+    PROC Path_10()
+        MoveL home,v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL gri_alma_noktasi,v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL gri_birakma_0_derecei,v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL gri_birakma_90_derece,v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL home,v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL turuncu_0_derece,v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL turuncu_90_derece,v5000,fine,tVacuum\WObj:=wobj0;
+
+    ENDPROC
+
+
+    PROC urun_alma()
+
+        MoveJ Offs(gri_alma_noktasi,0,0,50),v5000,fine,tVacuum\WObj:=wobj0;
+        MoveL gri_alma_noktasi,v5000,fine,tVacuum\WObj:=wobj0;
+        SetDO tutucu_kontrol,1;
+        MoveL Offs(gri_alma_noktasi,0,0,50),v5000,fine,tVacuum\WObj:=wobj0;
+
+    ENDPROC
+
+
+
+ENDMODULE
